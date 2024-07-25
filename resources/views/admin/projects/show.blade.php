@@ -27,6 +27,7 @@
         </section>
         <section>
             <h4>Technologies</h4>
+
             <ul>
                 @foreach ($project->technologies as $technology)
                     <li>{{ $technology->name }}</li>

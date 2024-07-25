@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 //importo dal seeder per store
 use Illuminate\Support\Str;
 
@@ -27,7 +28,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('technologies'));
     }
 
     /**
@@ -44,6 +46,12 @@ class ProjectController extends Controller
         $project->description = $data['description'];
         $project->slug = $data['slug'];
         $project->save();
+
+        //se esistono tecnologie crea la relazione con tabella pivot
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);
+        }
+
         //uso with per stampare un mess in pagina
         return view('admin.projects.show', compact('project'))->with('status', 'Progetto creato correttamente');
     }
