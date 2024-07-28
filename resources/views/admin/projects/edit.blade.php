@@ -23,6 +23,27 @@
                     <label for="description" class="form-label">Descrizione</label>
                     <textarea class="form-control" id="description" rows="6" name="description">{{ old('description', $project->description) }}</textarea>
                 </div>
+                <div class="mb-3">
+                    <div class="mb-3">Tecnologie usate</div>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check form-check-inline">
+                            {{-- gestione errori --}}
+                            @if ($errors->any())
+                                <input class="form-check-input" type="checkbox" id="tec-{{ $technology->id }}"
+                                    value="{{ $technology->id }}" name="technologies[]"
+                                    {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label"
+                                    for="tec-{{ $technology->id }}">{{ $technology->name }}</label>
+                            @else
+                                <input class="form-check-input" type="checkbox" id="tec-{{ $technology->id }}"
+                                    value="{{ $technology->id }}" name="technologies[]" {{-- Contains per cercare dentro una collections --}}
+                                    {{ $project->technologies->contains($technology) ? 'checked' : '' }}>
+                                <label class="form-check-label"
+                                    for="tec-{{ $technology->id }}">{{ $technology->name }}</label>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
                 <button type="submit" class="btn btn-primary">Modifica un progetto</button>
             </form>
         </section>

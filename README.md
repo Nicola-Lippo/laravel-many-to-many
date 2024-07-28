@@ -1,3 +1,5 @@
+DAY 1
+
 Relazione MANY TO MANY
 - creare tabella Technologies
 - creare tabella Pivot
@@ -17,3 +19,12 @@ creare il seeder per il model Technology.
 
 Bonus 2:
 aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.
+
+
+DaY 2
+
+permettere all’utente di associare le tecnologie nella pagina di creazione e modifica di un progetto
+
+gestire il salvataggio dell’associazione progetto-tecnologie con opportune regole di validazione
+
+eliminare opportunamente le relazioni alla cancellazione del progetto/technology
