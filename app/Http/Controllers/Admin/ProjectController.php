@@ -100,6 +100,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        // metodi per eliminare manualmente indipendentemente dalle configurazione dei database
+        //$project->technologies()->sync([]);
+        $project->technologies()->detach();
+
         $project->delete();
         return redirect()->route('admin.projects.index');
     }
