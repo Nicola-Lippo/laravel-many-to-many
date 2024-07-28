@@ -8,9 +8,9 @@
         </div>
 
         <section class="py-3">
-            @if (session('status'))
+            @if (session('message'))
                 <div class="allert alleert-success">
-                    {{ session('status') }}
+                    {{ session('message') }}
                 </div>
             @endif
         </section>

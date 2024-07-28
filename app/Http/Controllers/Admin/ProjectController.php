@@ -35,7 +35,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProjectRequest $request, Project $project)
+    public function store(StoreProjectRequest $request)
     {
         //salviamo i dati dentro una variabile
         $data = $request->validated();
@@ -53,15 +53,15 @@ class ProjectController extends Controller
         }
 
         //uso with per stampare un mess in pagina
-        return view('admin.projects.show', compact('project'))->with('status', 'Progetto creato correttamente');
+        return view('admin.projects.show', compact('project'))->with('message', 'Progetto creato correttamente');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Project $project)
+    public function show(Project $project, Technology $technology)
     {
-        return view('admin.projects.show', compact('project'));
+        return view('admin.projects.show', compact('project', 'technology'));
     }
 
     /**
